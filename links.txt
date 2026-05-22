@@ -1,0 +1,66 @@
+- https://github.com/gonum/gonum
+- https://github.com/gomlx/gomlx
+- https://github.com/openxla/xla
+- https://eli.thegreenplace.net/2024/gomlx-ml-in-go-without-python/
+- Perceptron - https://github.com/made2591/go-perceptron-go
+- NNCompresion - https://github.com/openvinotoolkit/nncf
+- Cibertron - https://github.com/nlpodyssey/cybertron
+- Hugot - https://github.com/knights-analytics/hugot 
+
+- TensorLogic
+    - https://github.com/activeloopai/tensorlogic
+    - https://arxiv.org/abs/2510.12269
+    - https://www.reddit.com/r/mlscaling/comments/1o85atb/tensor_logic_the_language_of_ai/?tl=es-419
+
+* NotebookLM
+    - https://notebooklm.google.com/notebook/92772de1-fae1-4e14-a1af-92e030faf0e5
+    - ...
+
+- Visores
+    - https://netron.app/
+    - https://github.com/fjukstad/gographer
+    - Manim
+        - https://github.com/3b1b/manim/tree/master?tab=readme-ov-file
+        - https://www.3blue1brown.com/
+            - Lista youtube - ...
+        * https://gemini.google.com/app/83f71712c33c743b
+        - 
+
+- Ides
+    - https://docs.continue.dev/customize/deep-dives/prompts
+    - https://docs.continue.dev/reference#prompts
+
+    - openwebui
+        - https://docs.openwebui.com/tutorials/tips/rag-tutorial#what-is-rag
+        - https://openwebui.com/posts/skills_manager_de4d1dce
+
+- Alphago - https://github.com/gorgonia/agogo
+- Gpu - https://github.com/mikeroyal/GPU-Guide
+- 
+
+- Otros
+    - https://github.com/sgl-project/sglang?tab=readme-ov-file
+    - https://www.lmsys.org/blog/2025-10-29-sglang-jax/
+    - Ocr - https://github.com/allenai/olmocr?tab=readme-ov-file
+    - Camaras Ip - https://github.com/blakeblackshear/frigate
+
+- Ejecucion en local
+    - Qwen
+        - https://qwen.ai/blog?id=qwen3-coder
+        - https://qwen.ai/blog?id=qwen3-coder-next
+        - https://www.datacamp.com/es/tutorial/run-qwen3-coder-next-locally
+
+    - https://lmstudio.ai/
+    - https://docs.vllm.ai/en/v0.7.2/getting_started/installation/gpu/index.html?device=xpu
+    - https://docs.vllm.ai/en/v0.7.2/getting_started/examples/florence2_inference.html
+
+    - Openvino
+        - https://docs.openvino.ai/2025/model-server/ovms_docs_llm_reference.html#
+        - https://docs.openvino.ai/2025/model-server/ovms_demos_continuous_batching_agent.html
+
+
+- PRs
+    - https://github.com/remsky/Kokoro-FastAPI/pull/444
+    - https://github.com/openvinotoolkit/openvino_contrib/pull/1025/changes
+    - https://github.com/josejuanmontiel/openvino_contrib/compare/master...openvinotoolkit%3Aopenvino_contrib%3Amaster
+    - https://github.com/ggml-org/llama.cpp/pull/19321/changes
