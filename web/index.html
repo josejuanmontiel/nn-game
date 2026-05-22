@@ -134,7 +134,11 @@
             document.getElementById("status").innerText = "WASM Ready. Running...";
             
             // Load initial levels.json to populate the editor
-            const resp = await fetch("../levels.json");
+            // Try GitHub Pages path first, fallback to local development path
+            let resp = await fetch("levels.json").catch(() => null);
+            if (!resp || !resp.ok) {
+                resp = await fetch("../levels.json");
+            }
             const jsonText = await resp.text();
             document.getElementById("config-json").value = jsonText;
 

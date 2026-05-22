@@ -4,6 +4,7 @@
 Welcome to the definitive companion to the **Deep Space Stretching** simulator. This document is a synthesis of four foundational NYU Deep Learning transcripts, designed to turn the "black box" of neural networks into a geometric, biological, and historical landscape.
 
 ### 📚 Quick Links
+- **[Play Live Demo (WASM)](https://josejuanmontiel.github.io/nn-game/)**
 - **[Documentation Index](doc/README.md)** (Architecture, Manifolds, Config)
 - **[Task List (TODO)](TODO.md)**
 
