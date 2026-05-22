@@ -1,0 +1,317 @@
+[
+    {
+        "ID": 1,
+        "Enabled": true,
+        "Name": "Level 1: XOR Clusters",
+        "NumClasses": 2,
+        "TargetAcc": 0.98,
+        "HiddenSizes": [
+            4
+        ],
+        "InputDims": 2,
+        "VizMode": "PCA",
+        "IntroText": "Standard XOR separation using 4 Gaussian clusters.",
+        "Generators": [
+            {
+                "Type": "gaussian",
+                "Class": 0,
+                "Count": 50,
+                "Settings": {
+                    "cx": 200,
+                    "cy": 200,
+                    "std": 30
+                }
+            },
+            {
+                "Type": "gaussian",
+                "Class": 1,
+                "Count": 50,
+                "Settings": {
+                    "cx": 400,
+                    "cy": 200,
+                    "std": 30
+                }
+            },
+            {
+                "Type": "gaussian",
+                "Class": 1,
+                "Count": 50,
+                "Settings": {
+                    "cx": 200,
+                    "cy": 400,
+                    "std": 30
+                }
+            },
+            {
+                "Type": "gaussian",
+                "Class": 0,
+                "Count": 50,
+                "Settings": {
+                    "cx": 400,
+                    "cy": 400,
+                    "std": 30
+                }
+            }
+        ],
+        "WeightInitScale": 1.0,
+        "BiasInitScale": 0.01,
+        "EngineType": "standard"
+    },
+    {
+        "ID": 2,
+        "Enabled": false,
+        "Name": "Level 2: Target & Ring",
+        "NumClasses": 2,
+        "TargetAcc": 0.95,
+        "HiddenSizes": [
+            8,
+            4
+        ],
+        "InputDims": 2,
+        "VizMode": "SPLOM",
+        "IntroText": "A central core surrounded by a protective ring.",
+        "Generators": [
+            {
+                "Type": "gaussian",
+                "Class": 0,
+                "Count": 80,
+                "Settings": {
+                    "cx": 300,
+                    "cy": 300,
+                    "std": 40
+                }
+            },
+            {
+                "Type": "ring",
+                "Class": 1,
+                "Count": 120,
+                "Settings": {
+                    "cx": 300,
+                    "cy": 300,
+                    "r1": 150,
+                    "r2": 200
+                }
+            }
+        ],
+        "WeightInitScale": 1.0,
+        "BiasInitScale": 0.01,
+        "EngineType": "standard"
+    },
+    {
+        "ID": 3,
+        "Enabled": false,
+        "Name": "Level 3: Triple Spiral",
+        "NumClasses": 3,
+        "TargetAcc": 0.90,
+        "HiddenSizes": [
+            16,
+            16,
+            8
+        ],
+        "InputDims": 2,
+        "VizMode": "Parallel",
+        "IntroText": "Three intertwining arms. Requires deep manifold folding.",
+        "Generators": [
+            {
+                "Type": "spiral",
+                "Class": 0,
+                "Count": 70,
+                "Settings": {
+                    "cx": 300,
+                    "cy": 300,
+                    "radiusScale": 15,
+                    "rotations": 3,
+                    "width": 8,
+                    "phase": 0
+                }
+            },
+            {
+                "Type": "spiral",
+                "Class": 1,
+                "Count": 70,
+                "Settings": {
+                    "cx": 300,
+                    "cy": 300,
+                    "radiusScale": 15,
+                    "rotations": 3,
+                    "width": 8,
+                    "phase": 2.09
+                }
+            },
+            {
+                "Type": "spiral",
+                "Class": 2,
+                "Count": 70,
+                "Settings": {
+                    "cx": 300,
+                    "cy": 300,
+                    "radiusScale": 15,
+                    "rotations": 3,
+                    "width": 8,
+                    "phase": 4.18
+                }
+            }
+        ],
+        "WeightInitScale": 1.0,
+        "BiasInitScale": 0.01,
+        "EngineType": "standard"
+    },
+    {
+        "ID": 4,
+        "Enabled": false,
+        "Name": "Level 4: The Checkerboard Space",
+        "NumClasses": 2,
+        "TargetAcc": 0.85,
+        "HiddenSizes": [
+            16,
+            16,
+            16
+        ],
+        "InputDims": 2,
+        "VizMode": "PCA",
+        "IntroText": "A complex box grid testing the network's high-frequency mapping.",
+        "Generators": [
+            {
+                "Type": "box",
+                "Class": 0,
+                "Count": 40,
+                "Settings": {
+                    "x1": 100,
+                    "y1": 100,
+                    "x2": 200,
+                    "y2": 200
+                }
+            },
+            {
+                "Type": "box",
+                "Class": 1,
+                "Count": 40,
+                "Settings": {
+                    "x1": 200,
+                    "y1": 100,
+                    "x2": 300,
+                    "y2": 200
+                }
+            },
+            {
+                "Type": "box",
+                "Class": 0,
+                "Count": 40,
+                "Settings": {
+                    "x1": 300,
+                    "y1": 100,
+                    "x2": 400,
+                    "y2": 200
+                }
+            },
+            {
+                "Type": "box",
+                "Class": 1,
+                "Count": 40,
+                "Settings": {
+                    "x1": 100,
+                    "y1": 200,
+                    "x2": 200,
+                    "y2": 300
+                }
+            },
+            {
+                "Type": "box",
+                "Class": 0,
+                "Count": 40,
+                "Settings": {
+                    "x1": 200,
+                    "y1": 200,
+                    "x2": 300,
+                    "y2": 300
+                }
+            },
+            {
+                "Type": "box",
+                "Class": 1,
+                "Count": 40,
+                "Settings": {
+                    "x1": 300,
+                    "y1": 200,
+                    "x2": 400,
+                    "y2": 300
+                }
+            }
+        ],
+        "WeightInitScale": 1.0,
+        "BiasInitScale": 0.01,
+        "EngineType": "standard"
+    },
+    {
+        "ID": 5,
+        "Enabled": false,
+        "Name": "Level 5: Hyper-Reality (10D)",
+        "NumClasses": 2,
+        "TargetAcc": 0.80,
+        "HiddenSizes": [
+            32,
+            16,
+            8
+        ],
+        "InputDims": 10,
+        "VizMode": "PCA",
+        "IntroText": "A 10-dimensional manifold challenge using Swiss Rolls and Hyper-Spheres.",
+        "Generators": [
+            {
+                "Type": "swiss_roll",
+                "Class": 0,
+                "Count": 100,
+                "Settings": {
+                    "noise": 0.1
+                }
+            },
+            {
+                "Type": "hyper_sphere",
+                "Class": 1,
+                "Count": 100,
+                "Settings": {
+                    "radius": 15.0,
+                    "noise": 2.0
+                }
+            }
+        ],
+        "WeightInitScale": 0.5,
+        "BiasInitScale": 0.01,
+        "EngineType": "standard"
+    },
+    {
+        "ID": 6,
+        "Enabled": true,
+        "Name": "Level 6: Convolucion Visual",
+        "NumClasses": 2,
+        "TargetAcc": 0.85,
+        "HiddenSizes": [
+            8,
+            4
+        ],
+        "InputDims": 64,
+        "VizMode": "PCA",
+        "IntroText": "¡Nivel CNN! Detecta patrones espaciales 'X' vs 'O'. La red usa filtros convolucionales para aprender formas, no solo posiciones.",
+        "Generators": [
+            {
+                "Type": "shapes",
+                "Class": 0,
+                "Count": 100,
+                "Settings": {
+                    "noise": 0.2
+                }
+            },
+            {
+                "Type": "shapes",
+                "Class": 1,
+                "Count": 100,
+                "Settings": {
+                    "noise": 0.2
+                }
+            }
+        ],
+        "WeightInitScale": 1.0,
+        "BiasInitScale": 0.0,
+        "EngineType": "cnn"
+    }
+]

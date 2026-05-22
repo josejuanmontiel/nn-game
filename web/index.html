@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Neural Simulator - WASM Web Edition</title>
+    <script src="wasm_exec.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #050514;
+            color: #fff;
+            font-family: 'Inter', system-ui, sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #pizarra-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            position: relative;
+        }
+        #editor-container {
+            width: 400px;
+            background: #0a0a1a;
+            border-left: 2px solid #336;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease, border 0.4s ease, opacity 0.4s ease;
+            box-sizing: border-box;
+            z-index: 5;
+        }
+        #editor-container.collapsed {
+            width: 0;
+            padding: 0;
+            border-left: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+        #toggle-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(51, 51, 170, 0.8);
+            color: white;
+            border: 1px solid #448;
+            border-radius: 4px;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background 0.2s, right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #toggle-btn:hover {
+            background: rgba(68, 68, 204, 1);
+        }
+        h2 { margin-top: 0; color: #aaf; font-size: 1.2rem; white-space: nowrap; }
+        textarea {
+            flex: 1;
+            background: #050510;
+            color: #0f0;
+            border: 1px solid #448;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            resize: none;
+            margin-bottom: 10px;
+        }
+        #apply-btn {
+            padding: 12px;
+            background: #33a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        #apply-btn:hover { background: #44c; }
+        #status {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            color: #888;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <div id="pizarra-container">
+        <!-- Collapsed arrow / Expand icon -->
+        <button id="toggle-btn" title="Toggle Level Editor">⚙️</button>
+        <!-- Ebiten canvas will be inserted here -->
+    </div>
+    <div id="editor-container">
+        <h2>Live Level Editor</h2>
+        <p style="font-size: 0.65rem; color: #88c; margin-bottom: 15px;">Validate modularity by editing config in real-time.</p>
+        <textarea id="config-json" spellcheck="false"></textarea>
+        <button id="apply-btn">Apply Config</button>
+        <div id="status">WASM Loading...</div>
+    </div>
+
+    <script>
+        if (!WebAssembly.instantiateStreaming) { 
+            WebAssembly.instantiateStreaming = async (resp, importObject) => {
+                const source = await (await resp).arrayBuffer();
+                return await WebAssembly.instantiate(source, importObject);
+            };
+        }
+
+        const go = new Go();
+        const editor = document.getElementById("editor-container");
+        const toggleBtn = document.getElementById("toggle-btn");
+        let mod, inst;
+
+        // Toggle Logic
+        toggleBtn.onclick = () => {
+            editor.classList.toggle("collapsed");
+        };
+
+        WebAssembly.instantiateStreaming(fetch("game.wasm"), go.importObject).then(async (result) => {
+            mod = result.module;
+            inst = result.instance;
+            document.getElementById("status").innerText = "WASM Ready. Running...";
+            
+            // Load initial levels.json to populate the editor
+            const resp = await fetch("../levels.json");
+            const jsonText = await resp.text();
+            document.getElementById("config-json").value = jsonText;
+
+            await go.run(inst);
+        }).catch((err) => {
+            console.error(err);
+            document.getElementById("status").innerText = "Error: " + err;
+        });
+
+        document.getElementById("apply-btn").onclick = () => {
+            const jsonStr = document.getElementById("config-json").value;
+            try {
+                // Validate JSON before sending
+                JSON.parse(jsonStr);
+                
+                if (window.updateLevelConfig) {
+                    const result = window.updateLevelConfig(jsonStr);
+                    if (result) {
+                        alert("Error updating config: " + result);
+                    } else {
+                        document.getElementById("status").innerText = "Applied at " + new Date().toLocaleTimeString();
+                        // Auto-collapse on success
+                        setTimeout(() => {
+                            editor.classList.add("collapsed");
+                        }, 300);
+                    }
+                } else {
+                    alert("WASM bridge not ready yet.");
+                }
+            } catch (e) {
+                alert("Invalid JSON: " + e.message);
+            }
+        };
+    </script>
+</body>
+</html>
