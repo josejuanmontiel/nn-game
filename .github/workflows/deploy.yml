@@ -24,7 +24,7 @@ jobs:
       - name: Build WASM
         run: |
           GOOS=js GOARCH=wasm go build -o web/game.wasm .
-          cp $(go env GOROOT)/misc/wasm/wasm_exec.js web/
+          cp $(go env GOROOT)/lib/wasm/wasm_exec.js web/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
